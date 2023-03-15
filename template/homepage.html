@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home page</title>
+    {% load django_bootstrap5 %}
+
+    {% bootstrap_css %}
+
+    {% bootstrap_javascript %}
+
+    {% bootstrap_messages %}  </head>
+  <body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar bg-success navbar-expand-lg text-light">
+                <div class="container-fluid">
+                  <a class="navbar-brand m-9 p-0" href="/"><h4 class="display-5 m-0 p-0 text-light">Amyca</h4> <h6 class="m-0 fs-6 text text-white">a book keeping software</h6></a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                        <li class="nav-item ">
+                            &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                        </li>
+                        
+                        <li class="nav-item ">
+                            <a class="nav-link active text-light" aria-current="page" href='#'>
+                                <button type="button" class="btn btn-light">Payroll</button>
+                            </a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link active text-light" aria-current="page" href='/subscription_plans/'>
+                                <button type="button" class="btn btn-light">Subscription plans</button>
+                            </a>
+                        </li>
+                    </ul>                  
+
+                    <div class="dropdown">
+                        <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Welcome, {{username}}
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href='/editprofile/'>View profile</a></li>
+                          <li><a class="dropdown-item" href='/logout/'>Log out</a></li>
+                        </ul>
+                      </div>
+                    
+                    </div>
+                </div>
+            </nav>  
+        </div>
+        <div class="row mt-2">
+            <div class="col-8">
+                <div class="card" style="width: 100%;">
+                    <img src="../static/accounting.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Amyca</h5>
+                        <p class="card-text">For individuals and businesses. Make income and expense reports and manage employee finances.</p>
+                      <a href="#" class="btn btn-success">Learn more</a>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-4">
+                <h4 class="text-success mb-3">Amyca serves</h4>
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                      <h5 class="card-title">Businesses</h5>
+                      <p class="card-text">Amyca helps you with all the accounting needs of your business.</p>
+                      <div class="row">
+                        <div class="col-7">
+                            <ul>
+                                <li>Business reports</li>
+                                <li>Employee payroll</li>
+
+                            </ul> 
+                        </div>
+                        <div class="col-5">
+                            <a href="#" class="btn btn-success mt-2">Know more</a>
+                        </div>
+                      </div>
+
+                    </div>
+                </div>
+                <div class="card mt-4" style="width: 100%;">
+                    <div class="card-body">
+                      <h5 class="card-title">Individuals</h5>
+                      <p class="card-text">Amyca has powerful tools to help you manage your personal finances.</p>
+                      <div class="row">
+                        <div class="col-7">
+                            <ul>
+                                <li>Personal income report</li>
+                                <li>Report of expenses</li>
+                              </ul> 
+                        </div>
+                        <div class="col-5">
+                            <a href="#" class="btn btn-success mt-2">Know more</a>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row  mt-4">
+            <h3 class="text-success">Subscription plans</h3>
+            <div class="col-4">
+                <div class="card" style="width: 25rem;">
+                    <img src="../static/basic.png" class="card-img-top" alt="..." style="width: 100%;height: 50%;">
+                    <div class="card-body">
+                      <h5 class="card-title text-success text-center">BASIC</h5>
+                      <p class="card-text text-left">
+                        <ul>
+                          <li>Import bank statements</li>
+                          <li>Import credit card statements</li>
+                          <li>Generate income statements</li>
+                          <li>Generate expense statements</li>
+                          <li>Generate profit & loss statements</li>
+
+                        </ul>
+                      </p>            
+                      <div class="text-center">
+                              <a href="payment" class="btn btn-warning">Subscribe</a>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-4">
+                <div class="card" style="width: 25rem;">
+                    <img src="../static/standard.jpg" class="card-img-top " alt="..." style="width: 100%;height: 50%;">
+                    <div class="card-body">
+                      <h5 class="card-title text-success text-center">STANDARD</h5>
+                      <p class="card-text">
+                        <p class="card-text text-left">
+                          <ul>
+                            <li class="text-danger">All the BASIC plan features</li>
+                            <br>
+                            <li>key in total hours</li>
+                            <li>Calculate employee payroll tax</li>
+                            <li>Calculate umemployement tax</li>  
+                          </ul>
+                        </p>
+                      </p>                    <div class="text-center">
+                          <a href="payment" class="btn btn-warning">Subscribe</a>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-4">
+                <div class="card" style="width: 25rem;">
+                    <img src="../static/premium.webp" class="card-img-top mt-4" alt="..." style="width: 100%;height: 50%;">
+                    <div class="card-body mt-5">
+                      <h5 class="card-title text-success text-center mt-5">PREMIUM</h5>
+                      <p class="card-text">
+                        <ul>
+                          <li class="text-danger">All the BASIC + STANDARD plan features</li>
+                          <br>
+                          <li>Import timesheet</li>
+                          <li>Employee view payroll withhold</li>
+                          <li>Generate amount for 941, 940 form</li>  
+                        </ul>
+                      </p>              <div class="text-center">
+                                <a href="payment" class="btn btn-warning">Subscribe</a>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+  </body>
+</html>

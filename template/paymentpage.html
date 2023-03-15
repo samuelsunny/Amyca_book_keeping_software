@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add user</title>
+    {% load django_bootstrap5 %}
+
+    {% bootstrap_css %}
+
+    {% bootstrap_javascript %}
+
+    {% bootstrap_messages %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        .paymentinfo {
+            background-color: #58968b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-3">
+
+        <div class="row justify-content-center">
+
+            <div class="col-8">
+                <div class="card mt-1 p-2">
+                    <div class="card-body">
+                        <form method="POST" action='/payment/'>
+                            {% csrf_token %}
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card bg-success paymentinfo">
+                                        <div class="card-body">
+                                            <div class="row text-left">
+                                                <h4 class="text-white mb-4">Payment information</h4>
+                                            </div>
+                                            <label for="form-control" class="form-label text-white">Card details</label>
+                                            <div class="mb-4">
+                                                <input type="text" class="form-control" id="name_on_card"
+                                                    name="name_on_card" placeholder="Enter the name on the card">
+                                            </div>
+
+                                            <div class="mb-4">
+                                                <input type="number" class="form-control" id="card_number"
+                                                    name="card_number" placeholder="Enter the card number">
+                                            </div>
+
+                                            <div class="mb-4">
+
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input type="text" class="form-control" id="expiry_date"
+                                                            name="expiry_date" placeholder="Card expiry date (MM/YY)">
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="password" class="form-control" id="cvv" name="cvv"
+                                                            placeholder="CVV">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-2">
+                                                <label for="billing_address" class="form-label text-white">Billing
+                                                    address</label>
+                                                <textarea class="form-control" id="billing_address"
+                                                    name="billing_address" rows="2" placeholder=""></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row text-center">
+                                <div id="sender">
+                                    <button type="submit" class="btn btn-warning  mt-2" id="button">Pay for subscription</button>
+                                </div>
+                            </div>
+
+
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+*{
+    font-family: 'poppins', sans serif;
+}
+body{
+    background-image: url(pic1.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+.container{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px 0 15px;
+}
+span{
+    color:indigo;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+}
+header{
+    color:indigo;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+
+}
+.input-field{
+    height: 35pt;
+    margin-top: 10px;
+
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    color: indigo;
+    padding: 0 0 0 45px;
+    background: rgba(255,255,255,0.1);
+}
+::-webkit-input-placeholder{
+    color: #fff;
+}
+.submit{
+    border: none;
+    border-radius: 30px;
+    margin-top: 10px;
+    font-size: 15px;
+    height: 45px;
+    outline: none;
+    width: 100%;
+    background: rgba(255,255,255,0.7);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.submit::hover{
+    box-shadow: 1px 5px 7 1px rgba(0,0,0,0.2);
+
+}
+label a.submit::hover{
+    color:#fff;
+    font-size: 15px;
+    text-decoration: underline;
+    text-align: center;
+
+}
+.bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 15px;
+    color: #ffff;
+    margin-top: 10px;
+    text-align: center;
+
+}
+.label p{
+    text-align: center;
+    color: #fff;
+    font-size: 15px;
+
+}
