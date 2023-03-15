@@ -10,7 +10,14 @@
 
     {% bootstrap_javascript %}
 
-    {% bootstrap_messages %}  </head>
+    {% bootstrap_messages %} 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+    <script  src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+
+  </head>
   <body>
     <div class="container-fluid">
         <div class="row">
@@ -69,7 +76,9 @@
                                                 <div class="form-group">
                                                     <label for="name" class="col-md-3 col-sm-3 col-xs-12 control-label">Choose the .csv file</label>
                                                     <div class="col-md-12">
-                                                        <input type="file" name="csv_file" id="csv_file" required="True" class="form-control" multiple>
+                                                        <input type="file" name="csv_file" id="csv_file" required="True" class="form-control" multiple onchange="checkCsvFile.call(this,event)">
+                                                        <p id="csvFileCheck" style="color:red; display:none;">Please upload CSV file only</p>
+                                                        <p id="csvEmptyCheck" style="color:red; display:none;">File Data is Empty</p>
                                                     </div>                    
                                                 </div>
                                                 <div class="form-group">                    
@@ -143,5 +152,96 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+<script>
+    function checkCsvFile(){
+        let myParagraph = document.getElementById("csvFileCheck");
+        let checkEmpty = document.getElementById("csvEmptyCheck");
+        let fileInput = document.getElementById("csv_file");
+        let file = fileInput.files[0];
+        let fileName = file.name;
+        var fileType = fileName.slice(fileName.lastIndexOf(".") + 1).toLowerCase();
+        console.log(fileType)
+        if(fileType!=='csv'){
+        myParagraph.style.display = "block";
+        }
+        else{
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const csvData = event.target.result;
+                const results = Papa.parse(csvData);
+                const isEmpty = results.data.length === 0;
+                if(isEmpty){
+                    checkEmpty.style.display = "block";
+                }
+                else{
+                    checkEmpty.style.display = "none";
+                }
+              };
+              reader.readAsText(file);
+            myParagraph.style.display = "none";
+        }
+    
+            }
+
+            $(document).ready(function () {
+                $('select').selectize({
+                    sortField: 'text'
+                });
+            });
+            function add_manually()
+            {
+                console.log("Clicked on add manually")
+                add_sub_category_section = document.getElementById("add_sub_category_manually");
+                
+                selection = document.getElementById("sub_category_selection");
+                console.log("value: ", selection.value);
+    
+                if(selection.value == 3)
+                {
+                    add_sub_category_section.style.display = "block"; 
+                }
+                else
+                {
+                    add_sub_category_section.style.display = "None"; 
+    
+                }
+            }
+    
+    
+            function getSelectedDateRange() {
+                const dateRange = document.querySelector('#date-range').value;
+                const currentDate = new Date();
+              
+                let startDate;
+                let endDate;
+              
+                switch (dateRange) {
+                  case 'annual':
+                    startDate = new Date(currentDate.getFullYear(), 0, 1); // January 1st of the current year
+                    endDate = new Date(currentDate.getFullYear(), 11, 31); // December 31st of the current year
+                    break;
+                  case 'quarterly':
+                    const currentQuarter = Math.floor((currentDate.getMonth() / 3)) + 1;
+                    startDate = new Date(currentDate.getFullYear(), (currentQuarter - 1) * 3, 1); // First day of current quarter
+                    endDate = new Date(currentDate.getFullYear(), currentQuarter * 3, 0); // Last day of current quarter
+                    break;
+                  case 'half-yearly':
+                    const currentMonth = currentDate.getMonth();
+                    if (currentMonth < 6) {
+                      startDate = new Date(currentDate.getFullYear(), 0, 1); // January 1st of the current year
+                      endDate = new Date(currentDate.getFullYear(), 5, 30); // June 30th of the current year
+                    } else {
+                      startDate = new Date(currentDate.getFullYear(), 6, 1); // July 1st of the current year
+                      endDate = new Date(currentDate.getFullYear(), 11, 31); // December 31st of the current year
+                    }
+                    break;
+                  default:
+                    console.error('Invalid date range selected.');
+                    return;
+                }
+              
+                console.log(`Selected date range: ${startDate.toDateString()} - ${endDate.toDateString()}`);
+              }
+</script>
   </body>
 </html>
